@@ -1,0 +1,18 @@
+.todo-filters {
+  padding: 0;
+  margin-bottom: 2rem;
+  font-size: 0.75rem;
+}
+
+.todo-filters li {
+  display: inline-block;
+  margin-right:  1rem;
+}
+
+.todo-filters li {
+  color: #999;
+}
+
+.todo-filters li:active {
+  color: #fff;
+}

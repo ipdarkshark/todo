@@ -1,11 +1,33 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 
-const App = ({ title }) => (
-  <div className="app">
-    <h1>hello world {title}</h1>
-  </div>);
+import TodoForm from './components/todo-form';
+import TodoList from './components/todo-list';
+import TodoFilters from './components/todo-filters';
 
-const mapStateToProps = ({ title }) => ({ title });
+import './styles/styles.scss';
 
-export default connect(mapStateToProps)(App);
+export class App extends Component {
+  render() {
+    return (
+      <div className="app">
+        <TodoForm />
+        <TodoFilters />
+        <TodoList />
+      </div>
+    )
+  }
+}
+
+export default App;
+
+// import React from 'react';
+// import { connect } from 'react-redux';
+
+// const App = ({ title }) => (
+//   <div className="app">
+//     <h1>hello world {title}</h1>
+//   </div>);
+
+// const mapStateToProps = ({ title }) => ({ title });
+
+// export default connect(mapStateToProps)(App);
