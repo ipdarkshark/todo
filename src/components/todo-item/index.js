@@ -37,13 +37,15 @@ class TodoItem extends Component {
   )
 
   render() {
-    const { task, deleteTodo } = this.props;
+    const { task, deleteTodo, toggleTodo } = this.props;
     const { editing } = this.state;
 
     return (
       <li className={classNames("todo-item", {"todo-item--completed": task.completed})}>
         <div className="todo-item__cell">
-          <Button className={classNames("btn--icon", "btn--checkbox", {'hide': editing})}>
+          <Button 
+            className={classNames("btn--icon", "btn--checkbox", {'hide': editing})}
+            onClick={() => toggleTodo(task.id)}>
             <Icon name={task.completed ? "check_box" : "check_box_outline_blank"} />
           </Button>
         </div>
