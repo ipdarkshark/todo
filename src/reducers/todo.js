@@ -3,6 +3,7 @@ import * as types from 'const';
 
 const {
   ADD_TODO,
+  DELETE_TODO,
 } = types;
 
 export const addTodo = (state = todos, action) => {
@@ -14,6 +15,12 @@ export const addTodo = (state = todos, action) => {
         completed: false,
         id: ++newId
       }]
+    case DELETE_TODO: 
+      let index = state.findIndex(todo => todo.id === action.id);
+      return [
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
+      ]
     default: 
       return state;
   }

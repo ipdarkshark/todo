@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import * as types from 'actions';
 import Button from 'components/button';
 import Icon from 'components/icon';
 
@@ -35,7 +37,7 @@ class TodoItem extends Component {
   )
 
   render() {
-    const { task } = this.props;
+    const { task, deleteTodo } = this.props;
     const { editing } = this.state;
 
     return (
@@ -61,7 +63,9 @@ class TodoItem extends Component {
             onClick={this.stopEdit}>
             <Icon name="clear" />
           </Button>
-          <Button className={classNames("btn--icon", {'hide': editing})}>
+          <Button 
+            className={classNames("btn--icon", {'hide': editing})}
+            onClick={() => deleteTodo(task.id)}>
             <Icon name="delete" />
           </Button>
         </div>
@@ -70,4 +74,4 @@ class TodoItem extends Component {
   }
 }
 
-export default TodoItem;
+export default connect(null, {...types})(TodoItem);

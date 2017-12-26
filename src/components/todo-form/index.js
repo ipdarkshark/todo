@@ -42,4 +42,4 @@ class TodoForm extends Component {
   )
 }
  
-export default connect(null, {...types})(TodoForm)
+export default connect(null, {...types})(TodoForm);
