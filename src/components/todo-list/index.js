@@ -22,4 +22,4 @@ const mapStateToProps = state => ({
   todoList: state.addTodo,
  });
  
- export default connect(mapStateToProps, null)(TodoList);
+ export default connect(mapStateToProps)(TodoList);

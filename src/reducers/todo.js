@@ -5,6 +5,7 @@ const {
   ADD_TODO,
   DELETE_TODO,
   TOGGLE_TODO,
+  EDIT_TODO,
 } = types;
 
 export const addTodo = (state = todos, action) => {
@@ -26,6 +27,11 @@ export const addTodo = (state = todos, action) => {
       return state.map(todo => {
         if (todo.id !== action.id) return todo;
         return Object.assign({}, todo, {completed: !todo.completed})
+      })
+    case EDIT_TODO:
+      return state.map(todo => {
+        if (todo.id !== action.id) return todo;
+        return Object.assign({}, todo, {title: action.text})
       })
     default: 
       return state;

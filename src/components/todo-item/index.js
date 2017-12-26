@@ -21,6 +21,24 @@ class TodoItem extends Component {
     this.setState({editing: false});
   }
 
+  saveChanges = event => {
+    const { task, editTodo } = this.props;
+    const text = event.target.value.trim();
+    if (text.length && task.title !== text) editTodo(task.id, text);
+    this.stopEdit();
+  }
+
+  handleKeyUp = event => {
+    if (event.keyCode === 13) this.saveChanges(event);
+    if (event.keyCode === 27) this.stopEdit();
+  }
+
+  moveCaretAtEnd = event => {
+    const temp_value = event.target.value;
+    event.target.value = '';
+    event.target.value = temp_value;
+  }
+
   renderTask = task => (
     <div className="todo-item__task">
       {task.title}
@@ -29,10 +47,13 @@ class TodoItem extends Component {
 
   renderEditInput = task => (
     <input
-      autoComplete="off"
-      className="todo-item__input"
-      defaultValue={task.title}
-      type="text"
+      type = "text"
+      autoComplete = "off"
+      autoFocus
+      className = "todo-item__input"
+      defaultValue = {task.title}
+      onKeyUp = {event => this.handleKeyUp(event)}
+      onFocus= {this.moveCaretAtEnd}
     />
   )
 
@@ -55,25 +76,29 @@ class TodoItem extends Component {
         </div>
 
         <div className="todo-item__cell">
-          <Button 
-            className={classNames("btn--icon", {'hide': editing})}
-            onClick={this.startEdit}>
-            <Icon name="mode_edit" />
-          </Button>
-          <Button 
-            className={classNames("btn--icon", {'hide': !editing})}
+          {editing && <Button 
+            className={classNames("btn--icon")}
             onClick={this.stopEdit}>
             <Icon name="clear" />
-          </Button>
-          <Button 
-            className={classNames("btn--icon", {'hide': editing})}
-            onClick={() => deleteTodo(task.id)}>
-            <Icon name="delete" />
-          </Button>
+          </Button>}
+          {!editing && [
+            <Button
+              key={'start_edit'}
+              className={classNames("btn--icon")}
+              onClick={this.startEdit}>
+              <Icon name="mode_edit" />
+            </Button>,
+            <Button 
+              key={'delete_item'}
+              className={classNames("btn--icon")}
+              onClick={() => deleteTodo(task.id)}>
+              <Icon name="delete" />
+            </Button>
+          ]}
         </div>
       </li>
     )
   }
 }
 
-export default connect(null, {...types})(TodoItem);
+export default connect(null, types)(TodoItem);

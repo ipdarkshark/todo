@@ -29,13 +29,13 @@ class TodoForm extends Component {
   }
 
   render = () => (
-    <form className="todo-form" onSubmit={event => this.handleSubmit(event)}>
+    <form className="todo-form" onSubmit={this.handleSubmit}>
       <input
         type = "text"
         autoComplete = "off"
         placeholder = "What needs to be done?"
-        onChange = {event => this.handleChange(event)}
-        onKeyUp = {event => this.handleKeyUp(event)}
+        onChange = {this.handleChange}
+        onKeyUp = {this.handleKeyUp}
         value = {this.state.text}
       />
     </form>
