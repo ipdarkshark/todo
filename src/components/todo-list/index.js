@@ -1,15 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import TodoItem from 'components/todo-item';
-import todos from 'todos';
 
 import './styles.scss';
 
-const TodoList = () => {
-  const task = todos.map(todo => <TodoItem 
+const TodoList = ({ todoList }) => {
+  const task = todoList.map(todo => <TodoItem 
     key={todo.id}
-    task={todo}
-  />);
+    task={todo}/>
+  );
 
   return (
     <ul className="todo-list">
@@ -18,5 +18,8 @@ const TodoList = () => {
   )
 }
 
-export default TodoList;
-
+const mapStateToProps = state => ({
+  todoList: state.addTodo,
+ });
+ 
+ export default connect(mapStateToProps, null)(TodoList);
