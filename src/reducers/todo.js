@@ -1,4 +1,4 @@
-import todos from 'todos';
+// import todos from 'todos';
 import * as types from 'const';
 
 const {
@@ -8,14 +8,14 @@ const {
   EDIT_TODO,
 } = types;
 
-export const addTodo = (state = todos, action) => {
+export const addTodo = (state = [], action) => {
   switch(action.type) {
     case ADD_TODO: 
       let newId = state.length;
       return [...state, {
         title: action.text,
         completed: false,
-        id: ++newId
+        id: newId + 1
       }]
     case DELETE_TODO: 
       let index = state.findIndex(todo => todo.id === action.id);

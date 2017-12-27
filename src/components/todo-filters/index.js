@@ -1,15 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-// import TaskItem from 'components/todo-item';
+import * as types from 'actions';
 
 import './styles.scss';
 
-const TodoFilters = () => (
+const TodoFilters = ({ setVisibilityFilter }) => (
   <ul className="todo-filters">
-    <li>View All</li>
-    <li>Active</li>
-    <li>Completed</li>
+    <li>
+      <a href="#" onClick = {() => setVisibilityFilter('ALL')}>View All</a>
+    </li>
+    <li>
+      <a href="#" onClick = {() => setVisibilityFilter('ACTIVE')}>Active</a>
+    </li>
+    <li>
+      <a href="#" onClick = {() => setVisibilityFilter('COMPLETED')}>Completed</a>
+    </li>
   </ul>
 );
 
-export default TodoFilters;
+
+
+export default connect(null, {...types})(TodoFilters);
