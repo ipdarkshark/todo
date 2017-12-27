@@ -6,17 +6,13 @@ import TodoFilters from './components/todo-filters';
 
 import './styles/styles.scss';
 
-export class App extends Component {
-  render() {
-    return (
-      <div className="app">
-        <TodoForm />
-        <TodoFilters />
-        <TodoList />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <div className="app">
+    <TodoForm />
+    <TodoFilters />
+    <TodoList />
+  </div>
+)
 
 export default App;
 
