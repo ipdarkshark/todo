@@ -4,5 +4,6 @@
 		"port": 3010
 	},
 	"host": "localhost",
-	"port": 3011
+	"port": 3011,
+	"apiHost": "http://localhost:3012"
 }

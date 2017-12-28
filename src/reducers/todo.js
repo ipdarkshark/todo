@@ -1,4 +1,3 @@
-// import todos from 'todos';
 import * as types from 'const';
 
 const {
@@ -6,6 +5,9 @@ const {
   DELETE_TODO,
   TOGGLE_TODO,
   EDIT_TODO,
+
+  GET_TODOS_SUCCESS,
+  GET_TODOS_FAIL,
 } = types;
 
 export const addTodo = (state = [], action) => {
@@ -33,6 +35,12 @@ export const addTodo = (state = [], action) => {
         if (todo.id !== action.id) return todo;
         return Object.assign({}, todo, {title: action.text})
       })
+
+
+    case GET_TODOS_SUCCESS:
+      return [...state, ...action.todos]
+    case GET_TODOS_FAIL:
+      return state;
     default: 
       return state;
   }

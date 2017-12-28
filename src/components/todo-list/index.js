@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import TodoItem from 'components/todo-item';
+import { getAllTodos } from 'actions';
 
 import './styles.scss';
 
@@ -18,21 +19,30 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const TodoList = ({ todoList }) => {
-  const todos = todoList.map(todo => <TodoItem 
-    key={todo.id}
-    task={todo}/>
-  );
+class TodoList extends Component {
+  componentDidMount() {
+    const { getAllTodos } = this.props;
+    getAllTodos && getAllTodos();
+  }
 
-  return (
-    <ul className="todo-list">
-      {todos}
-    </ul>
-  )
+  render() {
+    const { todoList } = this.props;
+
+    const todos = todoList.map(todo => <TodoItem 
+      key={todo.id}
+      task={todo}/>
+    );
+
+    return (
+      <ul className="todo-list">
+        {todos}
+      </ul>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
   todoList: getVisibleTodos(state.addTodo, state.visibilityFilter),
 });
- 
-export default connect(mapStateToProps)(TodoList);
+
+export default connect(mapStateToProps, { getAllTodos })(TodoList);

@@ -29,7 +29,7 @@ app.use(async (ctx) => {
   await send(ctx, `/${staticFolder}/index.html`);
 });
 
-app.listen(port, () => console.log(`Server listen on ${port}`)); // eslint-disable-line no-console
+app.listen(port, () => console.log(`Server listen on ${port}`)); // eslint-disable-line no-console 3011
 
 
 const devServer = new WebpackDevServer(Webpack(WebpackConfig), {
