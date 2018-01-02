@@ -19,6 +19,9 @@ const {
 
   EDIT_TODO_SUCCESS,
   EDIT_TODO_FAIL,
+
+  TOGGLE_TODO_SUCCESS,
+  TOGGLE_TODO_FAIL,
 } = types;
 
 export const addTodo = text => ({type: ADD_TODO, text});
@@ -39,3 +42,6 @@ export const deleteTodoFail = () => ({type: DELETE_TODO_FAIL});
 
 export const editTodoSuccess = (id, text) => ({type: EDIT_TODO_SUCCESS, id, text});
 export const editTodoFail = () => ({type: EDIT_TODO_FAIL});
+
+export const toggleTodoSuccess = id => ({type: TOGGLE_TODO_SUCCESS, id});
+export const toggleTodoFail = () => ({type: TOGGLE_TODO_FAIL});

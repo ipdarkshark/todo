@@ -53,8 +53,15 @@ router
     todo.title = ctx.request.body.title;
     ctx.body = ctx.request.body;
   })
+  .patch('/todos/:id', ctx => {
+    const todo = mockDB.todos.find(todo => todo.id == ctx.params.id);
+    todo.completed = !todo.completed;
+    ctx.body = ctx.params.id;
+  })
 
-app.use(cors())
+app.use(cors({
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
+}))
 app.use(router.routes())
 
 app.listen(port, () => console.log(`server started on ${port}`));

@@ -38,3 +38,11 @@ export const editTodo = (id, todo) => call(`/todos/`, {
 })
   .then(res => res.json())
   .then(data => data)
+
+
+export const toggleTodo = id => call(`/todos/${id}`, {
+  method: 'PATCH',
+  headers: { 'Content-Type': 'application/json' },
+})
+  .then(res => res.json())
+  .then(data => data)

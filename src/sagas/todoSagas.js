@@ -1,12 +1,13 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 
-import { getAllTodos, addNewTodo, deleteTodo, editTodo } from 'api';
+import { getAllTodos, addNewTodo, deleteTodo, editTodo, toggleTodo } from 'api';
 
 import {
   GET_TODOS_REQUEST,
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  TOGGLE_TODO,
 } from 'const';
 
 import {
@@ -18,6 +19,8 @@ import {
   deleteTodoFail,
   editTodoSuccess,
   editTodoFail,
+  toggleTodoSuccess,
+  toggleTodoFail,
 } from 'actions';
 
 function* getAllTodosSaga({payload}) {
@@ -56,12 +59,24 @@ function* editTodoSaga({id, text}) {
   }
 }
 
+function* toggleTodoSaga({id}) {
+  console.log('id',id)
+  try {
+    const todoID = yield toggleTodo(id);
+    console.log('todoID',todoID)
+    yield put(toggleTodoSuccess(todoID))
+  } catch(err) {
+    yield put(toggleTodoFail())
+  }
+}
+
 export default function* todosSaga() {
   yield [
     takeEvery(GET_TODOS_REQUEST, getAllTodosSaga),
     takeEvery(ADD_TODO, addNewTodoSaga),
     takeEvery(DELETE_TODO, deleteTodoSaga),
-    takeEvery(EDIT_TODO, editTodoSaga)
+    takeEvery(EDIT_TODO, editTodoSaga),
+    takeEvery(TOGGLE_TODO, toggleTodoSaga)
   ];
 }
 
