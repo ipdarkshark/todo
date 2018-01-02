@@ -1,10 +1,12 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
 import cors from 'koa-cors';
 
 const port = 3012;
 
 const app = new Koa();
+app.use(bodyParser())
 const router = new Router();
 
 const mockDB = {
@@ -34,11 +36,22 @@ const mockDB = {
 
 router
   .get('/todos', ctx => {
-    ctx.body = mockDB.todos
+    ctx.body = mockDB.todos;
   })
-  .get('/todos/:id', ctx => {
-    const todo = mockDB.todos.find(todo => todo.id == ctx.params.id)
-    ctx.body = todo
+  .post('/todos', ctx => {
+    const data = ctx.request.body;
+    mockDB.todos.push(data);
+    ctx.body = data;
+  })
+  .delete('/todos/:id', ctx => {
+    const index = mockDB.todos.findIndex(todo => todo.id == ctx.params.id);
+    mockDB.todos.splice(index, 1);
+    ctx.body = ctx.params.id;
+  })
+  .put('/todos', ctx => {
+    const todo = mockDB.todos.find(todo => todo.id === ctx.request.body.id);
+    todo.title = ctx.request.body.title;
+    ctx.body = ctx.request.body;
   })
 
 app.use(cors())
