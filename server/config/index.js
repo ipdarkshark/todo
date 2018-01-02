@@ -1,5 +1,5 @@
 export default {
-  port: process.env.PORT || 8888,
+  port: process.env.PORT || 3012,
   debug: true,
   jwt: {
     secret: 'private',

@@ -60,10 +60,8 @@ function* editTodoSaga({id, text}) {
 }
 
 function* toggleTodoSaga({id}) {
-  console.log('id',id)
   try {
     const todoID = yield toggleTodo(id);
-    console.log('todoID',todoID)
     yield put(toggleTodoSuccess(todoID))
   } catch(err) {
     yield put(toggleTodoFail())

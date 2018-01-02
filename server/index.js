@@ -3,65 +3,17 @@ import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import cors from 'koa-cors';
 
-const port = 3012;
+import config from './config';
+import todosRouter from './routers/todos';
 
 const app = new Koa();
-app.use(bodyParser())
 const router = new Router();
-
-const mockDB = {
-  todos: [
-    {
-      id: 0,
-      title: 'Task 1',
-      completed: false,
-    },
-    {
-      id: 1,
-      title: 'Task 2',
-      completed: true,
-    },
-    {
-      id: 2,
-      title: 'Task 3',
-      completed: true,
-    },
-    {
-      id: 3,
-      title: 'Task 4',
-      completed: true,
-    }
-  ]
-}
-
-router
-  .get('/todos', ctx => {
-    ctx.body = mockDB.todos;
-  })
-  .post('/todos', ctx => {
-    const data = ctx.request.body;
-    mockDB.todos.push(data);
-    ctx.body = data;
-  })
-  .delete('/todos/:id', ctx => {
-    const index = mockDB.todos.findIndex(todo => todo.id == ctx.params.id);
-    mockDB.todos.splice(index, 1);
-    ctx.body = ctx.params.id;
-  })
-  .put('/todos', ctx => {
-    const todo = mockDB.todos.find(todo => todo.id === ctx.request.body.id);
-    todo.title = ctx.request.body.title;
-    ctx.body = ctx.request.body;
-  })
-  .patch('/todos/:id', ctx => {
-    const todo = mockDB.todos.find(todo => todo.id == ctx.params.id);
-    todo.completed = !todo.completed;
-    ctx.body = ctx.params.id;
-  })
+app.use(bodyParser())
 
 app.use(cors({
   methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
 }))
-app.use(router.routes())
 
-app.listen(port, () => console.log(`server started on ${port}`));
+app.use(todosRouter.routes())
+
+app.listen(config.port, () => console.log(`server started on ${config.port}`));
