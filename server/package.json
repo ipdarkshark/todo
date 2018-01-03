@@ -6,13 +6,20 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node index.js",
-    "run": "nodemon index.js --exec babel-node"
+    "run": "nodemon index.js --exec babel-node",
+    "migration:generate": "sequelize migration:generate",
+    "model:generate": "sequelize model:generate",
+    "migrate": "sequelize db:migrate",
+    "migrate:down": "sequelize db:migrate:undo"
   },
   "dependencies": {
     "koa": "2.4.1",
     "koa-bodyparser": "4.2.0",
     "koa-cors": "0.0.16",
-    "koa-router": "7.3.0"
+    "koa-router": "7.3.0",
+    "mysql2": "1.5.1",
+    "sequelize": "4.28.6",
+    "sequelize-cli": "3.2.0"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

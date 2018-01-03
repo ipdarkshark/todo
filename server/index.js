@@ -3,7 +3,7 @@ import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import cors from 'koa-cors';
 
-import config from './config';
+const port = 3012;
 import todosRouter from './routers/todos';
 
 const app = new Koa();
@@ -16,4 +16,4 @@ app.use(cors({
 
 app.use(todosRouter.routes())
 
-app.listen(config.port, () => console.log(`server started on ${config.port}`));
+app.listen(port, () => console.log(`server started on ${port}`));

@@ -11,7 +11,6 @@ export const addNewTodo = todo => call('/todos', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    id: Math.random(),
     title: todo,
     completed: false
   }),
@@ -24,7 +23,7 @@ export const deleteTodo = id => call(`/todos/${id}`, {
   method: 'DELETE',
   headers: { 'Content-Type': 'application/json' },
 })
-  .then(res => res.json())
+  .then(res => res.text())
   .then(data => data)
 
 
@@ -44,5 +43,5 @@ export const toggleTodo = id => call(`/todos/${id}`, {
   method: 'PATCH',
   headers: { 'Content-Type': 'application/json' },
 })
-  .then(res => res.json())
+  .then(res => res.text())
   .then(data => data)

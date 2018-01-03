@@ -1,29 +1,36 @@
-import { mockDB } from '../mockDB';
+const models = require('../models');
+const todos = models.Todo;
 
-export const getTodos = ctx => {
+export const getTodos = async (ctx) => {
   try {
-    ctx.body = mockDB.todos;
+    ctx.body = await todos.findAll();
   } catch(error) {
     ctx.body = error.message;
     ctx.status = error.status || 500;
   }
 }
 
-export const addTodo = ctx => {
+export const addTodo = async (ctx) => {
   try {
-    const data = ctx.request.body;
-    mockDB.todos.push(data);
-    ctx.body = data;
+    const {title, completed} = ctx.request.body;
+    const todo = await todos.create({
+      title,
+      completed
+    })
+    ctx.body = todo;
   } catch(error) {
     ctx.body = error.message;
     ctx.status = error.status || 500;
   }
 }
 
-export const deleteTodo = ctx => {
+export const deleteTodo = async (ctx) => {
   try {
-    const index = mockDB.todos.findIndex(todo => todo.id == ctx.params.id);
-    mockDB.todos.splice(index, 1);
+    await todos.destroy({
+      where: {
+        id: ctx.params.id
+      }
+    })
     ctx.body = ctx.params.id;
   } catch(error) {
     ctx.body = error.message;
@@ -31,10 +38,13 @@ export const deleteTodo = ctx => {
   }
 }
 
-export const editTodo = ctx => {
+export const editTodo = async (ctx) => {
   try {
-    const todo = mockDB.todos.find(todo => todo.id === ctx.request.body.id);
-    todo.title = ctx.request.body.title;
+    const { id, title } = ctx.request.body;
+    await todos.update(
+      { title }, 
+      {where: { id }}
+    )
     ctx.body = ctx.request.body;
   } catch(error) {
     ctx.body = error.message;
@@ -42,10 +52,15 @@ export const editTodo = ctx => {
   }
 }
 
-export const toggleTodo = ctx => {
+export const toggleTodo = async (ctx) => {
   try {
-    const todo = mockDB.todos.find(todo => todo.id == ctx.params.id);
-    todo.completed = !todo.completed;
+    const todo = await todos.findOne(
+      {where: {id: ctx.params.id}}
+    );
+    await todos.update(
+      { completed: !todo.dataValues.completed},
+      {where: {id: ctx.params.id}}
+    )
     ctx.body = ctx.params.id;
   } catch(error) {
     ctx.body = error.message;
