@@ -29,6 +29,7 @@
   display: none;
 }
 
-.btn:hover {
+.btn--icon:hover,
+.btn--checkbox:hover {
   color: #999;
 }
