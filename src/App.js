@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import TodoForm from './components/todo-form';
-import TodoList from './components/todo-list';
-import TodoFilters from './components/todo-filters';
+import SignIN from 'containers/sign-in';
+import SignUP from 'containers/sign-up';
+import Todos from 'containers/todos';
 
 import './styles/styles.scss';
 
 const App = () => (
   <div className="app">
-    <TodoForm />
-    <TodoFilters />
-    <TodoList />
+    <Switch>
+      <Route exact path='/sign-in' component={SignIN}/>
+      <Route path='/sign-up' component={SignUP}/>
+      <Route path='/todos' component={Todos}/>
+    </Switch>
   </div>
 )
 

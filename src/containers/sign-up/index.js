@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 import Input from 'components/input';
 import Button from 'components/button';
+import Panel from 'components/panel';
 
-import './styles.scss';
-
-const Register = props => {
+const SignUP = props => {
   const { handleSubmit, reset } = props;
   return (
-    <form className="author-form" onSubmit={handleSubmit}>
-      <h2 className="author-form__title">Sign up</h2>
+    <form onSubmit={handleSubmit}>
+      <Panel>Sign up</Panel>
       <Field
         name="firstname"
         type="text"
@@ -39,14 +39,16 @@ const Register = props => {
         component={Input}
         label="Password"
       />
-      <div className="author-form__buttons">
-        <Button className="author-form__button author-form__button--submit">
-          Register
+      <Panel className="panel--bottom">
+        <Button className="btn--auth btn--submit">
+          Sign up
         </Button>
-        <Button className="author-form__button author-form__button--cancel">
-          Cancel
-        </Button>
-      </div>
+        <Link to="/sign-in">
+          <Button className="btn--auth btn--cancel">
+            Cancel
+          </Button>
+        </Link>
+      </Panel>
     </form>
   )
 }
@@ -55,4 +57,4 @@ export default reduxForm({
   form: 'signUP', // a unique identifier for this form
   // validate, // <--- validation function given to redux-form
   // warn // <--- warning function given to redux-form
-})(Register)
+})(SignUP)

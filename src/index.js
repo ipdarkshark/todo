@@ -2,17 +2,16 @@ import 'regenerator-runtime/runtime';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
-import Register from 'components/register';
-import Authorization from 'components/authorization';
 import storeData from './store';
 
 render(
   <Provider store={storeData}>
-    <Authorization />
-    {/* <Register /> */}
-    {/* <App /> */}
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );
