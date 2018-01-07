@@ -26,3 +26,11 @@ body {
   max-width: 28rem;
   width: 100%;
 }
+
+.error {
+  position: absolute;
+  color: #a56bbf;
+  bottom: -25px;
+  right: 0;
+  font-size: 0.75rem;
+}

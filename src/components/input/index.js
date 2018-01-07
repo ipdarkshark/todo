@@ -11,17 +11,22 @@ class Input extends Component {
 
   handleFocus = () => this.setState({ isFocused: true });
 
+
   handleBlur = e => {
+    const { input } = this.props;
     const value = e.target.value.trim().length;
 
     this.setState({ isFocused: false });
     if (value) this.setState({ isFilled: true });
     else this.setState({ isFilled: false });
+
+    input.onBlur(e)
   }
 
   render = () => {
-    const {input, label, type, meta: { touched, error, warning }, autoComplete} = this.props;
+    const {input, label, type, meta: { touched, error }, autoComplete} = this.props;
     const {isFocused, isFilled} = this.state;
+    console.log(touched, error)
     return (
       <div className={classNames("author-form__field", { "is-focused": isFilled || isFocused })}>
         <label>{label}</label>
@@ -32,6 +37,7 @@ class Input extends Component {
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />
+        { touched && error && <span className="error">{error}</span> }
       </div>
     )
   }

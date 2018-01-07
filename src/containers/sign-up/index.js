@@ -7,6 +7,21 @@ import Input from 'components/input';
 import Button from 'components/button';
 import Panel from 'components/panel';
 
+const validate = values => {
+  const errors = {};
+
+  if (!values.firstname) errors.firstname = 'Required';
+
+  if (!values.lastname) errors.lastname = 'Required';
+
+  if (!values.username) errors.username = 'Required';
+
+  if (!values.password) errors.password = 'Required';
+  else if (values.password.length < 3) errors.password = 'Must be 3 characters or more';
+
+  return errors;
+}
+
 const SignUP = props => {
   const { handleSubmit, reset } = props;
   return (
@@ -43,7 +58,7 @@ const SignUP = props => {
         <Button className="btn--auth btn--submit">
           Sign up
         </Button>
-        <Link to="/sign-in">
+        <Link to="/">
           <Button className="btn--auth btn--cancel">
             Cancel
           </Button>
@@ -53,8 +68,10 @@ const SignUP = props => {
   )
 }
 
-export default reduxForm({
-  form: 'signUP', // a unique identifier for this form
-  // validate, // <--- validation function given to redux-form
-  // warn // <--- warning function given to redux-form
-})(SignUP)
+const wrappedSignUpForm = reduxForm({
+  form: 'signUP',
+  validate,
+})(SignUP);
+
+export default connect(null, null)(wrappedSignUpForm);
+
