@@ -13,6 +13,8 @@
     "migrate:down": "sequelize db:migrate:undo"
   },
   "dependencies": {
+    "bcrypt": "1.0.3",
+    "jsonwebtoken": "8.1.0",
     "koa": "2.4.1",
     "koa-bodyparser": "4.2.0",
     "koa-cors": "0.0.16",

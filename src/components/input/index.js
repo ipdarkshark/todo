@@ -26,7 +26,7 @@ class Input extends Component {
   render = () => {
     const {input, label, type, meta: { touched, error }, autoComplete} = this.props;
     const {isFocused, isFilled} = this.state;
-    console.log(touched, error)
+
     return (
       <div className={classNames("author-form__field", { "is-focused": isFilled || isFocused })}>
         <label>{label}</label>

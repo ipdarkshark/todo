@@ -45,3 +45,17 @@ export const toggleTodo = id => call(`/todos/${id}`, {
 })
   .then(res => res.text())
   .then(data => data)
+
+
+export const signUp = user => call('/sign-up', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    username: user.username,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    password: user.password
+  }),
+})
+  .then(res => res.json())
+  .then(data => data.token)

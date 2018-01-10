@@ -22,6 +22,10 @@ const {
 
   TOGGLE_TODO_SUCCESS,
   TOGGLE_TODO_FAIL,
+
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAIL,
 } = types;
 
 export const addTodo = text => ({type: ADD_TODO, text});
@@ -45,3 +49,7 @@ export const editTodoFail = () => ({type: EDIT_TODO_FAIL});
 
 export const toggleTodoSuccess = id => ({type: TOGGLE_TODO_SUCCESS, id});
 export const toggleTodoFail = () => ({type: TOGGLE_TODO_FAIL});
+
+export const signUpRequest = user => ({type: SIGN_UP_REQUEST, user});
+export const signUpSuccess = user => ({type: SIGN_UP_SUCCESS, user});
+export const signUpFail = () => ({type: SIGN_UP_FAIL});

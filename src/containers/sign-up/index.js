@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Input from 'components/input';
 import Button from 'components/button';
 import Panel from 'components/panel';
+import { signUpRequest } from 'actions';
 
 const validate = values => {
   const errors = {};
@@ -55,7 +56,7 @@ const SignUP = props => {
         label="Password"
       />
       <Panel className="panel--bottom">
-        <Button className="btn--auth btn--submit">
+        <Button className="btn--auth btn--submit" type="submit">
           Sign up
         </Button>
         <Link to="/">
@@ -68,10 +69,15 @@ const SignUP = props => {
   )
 }
 
-const wrappedSignUpForm = reduxForm({
+export default reduxForm({
   form: 'signUP',
   validate,
+  onSubmit: (values, dispatch) => {
+    // console.log(dispatch)
+    // console.log(values);
+    dispatch(signUpRequest(values))
+  }
 })(SignUP);
 
-export default connect(null, null)(wrappedSignUpForm);
+// export default connect(null, null)(wrappedSignUpForm);
 

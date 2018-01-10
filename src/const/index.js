@@ -20,3 +20,7 @@ export const EDIT_TODO_FAIL = 'EDIT_TODO_FAIL';
 export const TOGGLE_TODO_SUCCESS = 'TOGGLE_TODO_SUCCESS';
 export const TOGGLE_TODO_FAIL = 'TOGGLE_TODO_FAIL';
 
+
+export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_FAIL = 'SIGN_UP_FAIL';
