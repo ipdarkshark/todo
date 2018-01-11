@@ -36,7 +36,8 @@ export const signIN = async (ctx) => {
     if (!user) throw new Error('Username is invalid');
     if (checkedPassword) {
       const token = jwt.sign({
-        user
+        id: user.id,
+        username: user.username
       }, 'secret');
       ctx.status = 200;
       ctx.body = {token};

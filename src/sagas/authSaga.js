@@ -26,7 +26,7 @@ import {
 function* signUpSaga({user}) {
   try {
     const {title, content} = yield signUp(user);
-    yield history.push('/');
+    yield history.push('/sign-in');
     yield showSuccess({ title, content})
   } catch(err) {
     yield showError({ content: 'Cannot sign-up' })
@@ -37,11 +37,11 @@ function* signUpSaga({user}) {
 function* signInSaga({user}) {
   try {
     const token = yield signIn(user);
-    const User = yield decode(token);
+    const userInfo = yield decode(token);
     yield localStorage.setItem('jwtToken', token);
-    yield put(signInSuccess(User));
+    yield put(signInSuccess(userInfo));
     yield setAuthToken(token);
-    yield history.push('/todos');
+    yield history.push('/');
   } catch(err) {
     yield showError({ content: 'Wrong password or username' })
     yield put(signUpFail())

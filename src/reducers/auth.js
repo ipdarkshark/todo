@@ -13,7 +13,7 @@ export const auth = (state = {isAuthenticated: false, user: {}}, action) => {
     case SIGN_IN_SUCCESS: 
       return {
         isAuthenticated: true,
-        user: action.user.user
+        user: {...action.user}
       }
 
     case SIGN_OUT: 

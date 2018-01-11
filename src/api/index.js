@@ -3,7 +3,7 @@ import { apiHost } from '../../config.json';
 const call = (path, ...args) => fetch(`${apiHost}${path}`, ...args);
 export const headers = new Headers({ 'Content-Type': 'application/json' });
 
-export const getAllTodos = () => call('/todos')
+export const getAllTodos = () => call('/todos', {headers})
   .then(res => res.json())
   .then(data => data)
 
@@ -58,10 +58,7 @@ export const signUp = user => call('/sign-up', {
     password: user.password
   }),
 })
-  .then(res => {
-    if (res.status === 200) res.json();
-    else res.text();
-  })
+  .then(res => res.json())
   .then(data => data)
 
 

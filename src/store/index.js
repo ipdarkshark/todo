@@ -17,10 +17,10 @@ const storeData = createStore(
   )
 );
 
-if (localStorage.jwtToken) {
-  setAuthToken(localStorage.jwtToken);
-  storeData.dispatch(signInSuccess(decode(localStorage.jwtToken)))
-}
+// if (localStorage.jwtToken) {
+//   setAuthToken(localStorage.jwtToken);
+//   storeData.dispatch(signInSuccess(decode(localStorage.jwtToken)))
+// }
 
 sagaMiddleware.run(rootSaga);
 
