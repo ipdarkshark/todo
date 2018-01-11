@@ -1,4 +1,5 @@
 import * as types from 'const';
+import { toastr } from 'react-redux-toastr';
 
 const {
   ADD_TODO,
@@ -26,6 +27,16 @@ const {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAIL,
+
+  SIGN_IN_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAIL,
+
+  SIGN_OUT,
+
+  DEFAULT_SUCCESS_TITLE,
+  DEFAULT_ERROR_TITLE,
+  DEFAULT_ERROR_CONTENT,
 } = types;
 
 export const addTodo = text => ({type: ADD_TODO, text});
@@ -51,5 +62,19 @@ export const toggleTodoSuccess = id => ({type: TOGGLE_TODO_SUCCESS, id});
 export const toggleTodoFail = () => ({type: TOGGLE_TODO_FAIL});
 
 export const signUpRequest = user => ({type: SIGN_UP_REQUEST, user});
-export const signUpSuccess = user => ({type: SIGN_UP_SUCCESS, user});
+export const signUpSuccess = () => ({type: SIGN_UP_SUCCESS});
 export const signUpFail = () => ({type: SIGN_UP_FAIL});
+
+export const signInRequest = user => ({type: SIGN_IN_REQUEST, user});
+export const signInSuccess = user => ({type: SIGN_IN_SUCCESS, user});
+export const signInFail = () => ({type: SIGN_IN_FAIL});
+
+export const signOut = () => ({type: SIGN_OUT});
+
+export const showSuccess = ({ title = DEFAULT_SUCCESS_TITLE, content }) => toastr.success(title, content);
+export const showError = (data) => {
+  const {
+    title = DEFAULT_ERROR_TITLE, content = DEFAULT_ERROR_CONTENT,
+  } = typeof data === 'object' ? data : {};
+  toastr.error(title, content);
+};

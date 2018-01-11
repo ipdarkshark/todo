@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Input from 'components/input';
 import Button from 'components/button';
 import Panel from 'components/panel';
+import { signInRequest } from 'actions';
 
 const validate = values => {
   const errors = {};
@@ -37,12 +38,12 @@ const SignIN = props => {
         label="Password"
       />
       <Panel className="panel--bottom">
-        <Button className="btn--auth btn--submit">
+        <Button className="btn--auth btn--submit" type='submit'>
           Sign in
         </Button>
-        <Link to="/sign-up">
+        <Link to="/">
           <Button className="btn--auth btn--cancel">
-            Sign up
+            Cancel
           </Button>
         </Link>
       </Panel>
@@ -50,9 +51,12 @@ const SignIN = props => {
   )
 }
 
-const wrappedSignInForm = reduxForm({
+export default reduxForm({
   form: 'signUP',
   validate,
+  onSubmit: (values, dispatch) => {
+    dispatch(signInRequest(values))
+  }
 })(SignIN);
 
-export default connect(null, null)(wrappedSignInForm);
+// export default connect(null, null)(wrappedSignInForm);

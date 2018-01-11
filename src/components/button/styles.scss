@@ -34,6 +34,17 @@
   color: #999;
 }
 
+.btn--starter {
+  color: #666;
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.btn--starter:hover {
+  color: #fff;
+}
+
 .btn--auth {
   background-color: #fff;
   transition: background-color 0.2s, color 0.2s;

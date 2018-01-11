@@ -1,6 +1,7 @@
 import { apiHost } from '../../config.json';
 
 const call = (path, ...args) => fetch(`${apiHost}${path}`, ...args);
+export const headers = new Headers({ 'Content-Type': 'application/json' });
 
 export const getAllTodos = () => call('/todos')
   .then(res => res.json())
@@ -9,7 +10,7 @@ export const getAllTodos = () => call('/todos')
 
 export const addNewTodo = todo => call('/todos', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
   body: JSON.stringify({
     title: todo,
     completed: false
@@ -21,7 +22,7 @@ export const addNewTodo = todo => call('/todos', {
 
 export const deleteTodo = id => call(`/todos/${id}`, {
   method: 'DELETE',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
 })
   .then(res => res.text())
   .then(data => data)
@@ -29,7 +30,7 @@ export const deleteTodo = id => call(`/todos/${id}`, {
 
 export const editTodo = (id, todo) => call(`/todos/`, {
   method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
   body: JSON.stringify({
     id,
     title: todo
@@ -41,7 +42,7 @@ export const editTodo = (id, todo) => call(`/todos/`, {
 
 export const toggleTodo = id => call(`/todos/${id}`, {
   method: 'PATCH',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
 })
   .then(res => res.text())
   .then(data => data)
@@ -49,11 +50,26 @@ export const toggleTodo = id => call(`/todos/${id}`, {
 
 export const signUp = user => call('/sign-up', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers,
   body: JSON.stringify({
     username: user.username,
     firstname: user.firstname,
     lastname: user.lastname,
+    password: user.password
+  }),
+})
+  .then(res => {
+    if (res.status === 200) res.json();
+    else res.text();
+  })
+  .then(data => data)
+
+
+export const signIn = user => call('/sign-in', {
+  method: 'POST',
+  headers,
+  body: JSON.stringify({
+    username: user.username,
     password: user.password
   }),
 })

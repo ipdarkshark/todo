@@ -1,3 +1,5 @@
+@import '../../node_modules/react-redux-toastr/src/styles/index';
+
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +16,7 @@ body {
   color: #fff;
 }
 
-#root {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,10 +29,22 @@ body {
   width: 100%;
 }
 
+.header {
+  padding: 15px;
+}
+
 .error {
   position: absolute;
   color: #a56bbf;
   bottom: -25px;
   right: 0;
   font-size: 0.75rem;
+}
+
+.redux-toastr .toastr .rrt-middle-container .rrt-title {
+  font-weight: normal;
+}
+
+.redux-toastr .toastr .rrt-middle-container .rrt-text {
+  font-size: 0.75em;
 }
