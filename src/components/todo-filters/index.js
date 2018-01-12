@@ -1,24 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import * as types from 'actions';
+import Button from 'components/button';
 
-import './styles.scss';
+const TodoFilters = ({ setVisibilityFilter, filter }) => {
+  const setVisibilityHandler = (event, filter) => {
+    event.preventDefault();
+    setVisibilityFilter(filter);
+  }
 
-const TodoFilters = ({ setVisibilityFilter }) => (
-  <ul className="todo-filters">
-    <li>
-      <a href="#" onClick = {() => setVisibilityFilter('ALL')}>View All</a>
-    </li>
-    <li>
-      <a href="#" onClick = {() => setVisibilityFilter('ACTIVE')}>Active</a>
-    </li>
-    <li>
-      <a href="#" onClick = {() => setVisibilityFilter('COMPLETED')}>Completed</a>
-    </li>
-  </ul>
-);
+  return (
+    <div className="todo-filters">
+      <Button 
+        className={classNames("btn--filter", {"active": filter === 'ALL'})} 
+        onClick={ e => setVisibilityHandler(e, "ALL") }>
+        All
+      </Button>
+      <Button 
+        className={classNames("btn--filter", {"active": filter === 'ACTIVE'})}
+        onClick={ e => setVisibilityHandler(e, "ACTIVE") }>
+        Active
+      </Button>
+      <Button 
+        className={classNames("btn--filter", {"active": filter === 'COMPLETED'})} 
+        onClick={ e => setVisibilityHandler(e, "COMPLETED") }>
+        Completed
+      </Button>
+    </div>
+  );
+}
 
+const mapStateToProps = state => ({
+  filter: state.visibilityFilter
+})
 
-
-export default connect(null, {...types})(TodoFilters);
+export default connect(mapStateToProps, {...types})(TodoFilters);

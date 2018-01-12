@@ -62,3 +62,19 @@
   color: #fff;
   background-color: #a56bbf;
 }
+
+.btn--filter {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.75rem;
+  padding: 0 0.5rem;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn--filter.active {
+  color: #fff;
+}

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Button from 'components/button';
 
-import 'styles/styles.scss';
-
 const StarterPage = () => (
   <div className="starter">
       <Link to="/sign-in">

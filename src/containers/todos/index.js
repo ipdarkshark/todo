@@ -20,9 +20,9 @@ const Todos = ({signOut, deleteAllTodos}) => {
 
   return (
     <div className="app">
-      <header className="header">
+      <div className="header">
         <a href="#" onClick={signOutHandler}>Sign out</a>
-      </header>
+      </div>
       <TodoForm />
       <TodoFilters />
       <TodoList />
