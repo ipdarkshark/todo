@@ -7,10 +7,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4
     },
-    userId: DataTypes.UUIDV4,
+    userId: {
+      type: DataTypes.UUID,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
     title: DataTypes.STRING,
     completed: DataTypes.BOOLEAN
   });
+
+  Todo.associate = models => {
+    models.Todo.belongsTo(models.User, {
+    });
+  };
 
   return Todo;
 };

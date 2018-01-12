@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      field: 'id',
     },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -15,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    User.hasMany(models.Todo);
+    models.User.hasMany(models.Todo);
   };
 
   return User;

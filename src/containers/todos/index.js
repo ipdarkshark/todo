@@ -4,17 +4,18 @@ import { connect } from 'react-redux';
 import TodoForm from 'components/todo-form';
 import TodoList from 'components/todo-list';
 import TodoFilters from 'components/todo-filters';
-import { signOut } from 'actions';
+import { signOut, deleteAllTodos } from 'actions';
 import { headers } from 'api';
 
 import 'styles/styles.scss';
 
-const Todos = ({signOut}) => {
+const Todos = ({signOut, deleteAllTodos}) => {
   const signOutHandler = event => {
     event.preventDefault();
     headers.delete('Authorization')
     localStorage.removeItem('jwtToken');
     signOut();
+    deleteAllTodos();
   }
 
   return (
@@ -29,4 +30,4 @@ const Todos = ({signOut}) => {
   )
 }
 
-export default connect(null, { signOut })(Todos);
+export default connect(null, { signOut, deleteAllTodos })(Todos);

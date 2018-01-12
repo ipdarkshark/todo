@@ -29,9 +29,41 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    }).then(() => {
+      return queryInterface.createTable('Todos', {
+        id: {
+          allowNull: false,
+          primaryKey: true,
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+        },
+        userId: {
+          type: Sequelize.UUID,
+          references: {
+            model: 'Users',
+            key: 'id'
+          }
+        },
+        title: {
+          type: Sequelize.STRING
+        },
+        completed: {
+          type: Sequelize.BOOLEAN
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        }
+      })
+    })
   },
+
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Todos')
+      .then(()=> queryInterface.dropTable('Users'))
   }
 };

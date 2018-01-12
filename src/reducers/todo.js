@@ -14,6 +14,7 @@ const {
 
   DELETE_TODO_SUCCESS,
   DELETE_TODO_FAIL,
+  DELETE_ALL_TODO,
 
   EDIT_TODO_SUCCESS,
   EDIT_TODO_FAIL,
@@ -49,6 +50,9 @@ export const addTodo = (state = [], action) => {
         ...state.slice(0, index),
         ...state.slice(index + 1)
       ]
+    
+    case DELETE_ALL_TODO:
+      return state = [];
       
     default: 
       return state;

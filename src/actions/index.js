@@ -4,6 +4,7 @@ import { toastr } from 'react-redux-toastr';
 const {
   ADD_TODO,
   DELETE_TODO,
+  DELETE_ALL_TODO,
   TOGGLE_TODO,
   EDIT_TODO,
   SET_VISIBILITY_FILTER,
@@ -54,6 +55,8 @@ export const addTodoFail = () => ({type: ADD_TODO_FAIL});
 
 export const deleteTodoSuccess = id => ({type: DELETE_TODO_SUCCESS, id});
 export const deleteTodoFail = () => ({type: DELETE_TODO_FAIL});
+
+export const deleteAllTodos = () => ({type: DELETE_ALL_TODO});
 
 export const editTodoSuccess = (id, text) => ({type: EDIT_TODO_SUCCESS, id, text});
 export const editTodoFail = () => ({type: EDIT_TODO_FAIL});
