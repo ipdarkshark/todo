@@ -12,24 +12,24 @@ export const signUP = async (ctx) => {
       username,
       firstname,
       lastname,
-      password: bcryptPassword
+      password: bcryptPassword,
     });
     ctx.body = {
       title: 'Successfully signed!',
-      content: 'Please login'
-    }
+      content: 'Please login',
+    };
     ctx.status = 200;
-  } catch(error) {
+  } catch (error) {
     ctx.body = error.message;
     ctx.status = error.status || 500;
   }
-}
+};
 
 export const signIN = async (ctx) => {
   try {
     const { username, password } = ctx.request.body;
     const user = await users.findOne(
-      {where: {username}}
+      { where: { username } },
     );
     const checkedPassword = await bcrypt.compare(password, user.password);
 
@@ -37,16 +37,16 @@ export const signIN = async (ctx) => {
     if (checkedPassword) {
       const token = jwt.sign({
         id: user.id,
-        username: user.username
+        username: user.username,
       }, 'secret');
       ctx.status = 200;
-      ctx.body = {token};
+      ctx.body = { token };
     } else {
       ctx.status = 401;
       ctx.body = 'Invalid password';
     }
-  } catch(error) {
+  } catch (error) {
     ctx.body = 'Invalid username';
     ctx.status = error.status || 401;
   }
-}
+};

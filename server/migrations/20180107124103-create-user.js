@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {
@@ -7,28 +5,28 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       firstname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       lastname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     }).then(() => {
       return queryInterface.createTable('Todos', {
         id: {
@@ -41,29 +39,29 @@ module.exports = {
           type: Sequelize.UUID,
           references: {
             model: 'Users',
-            key: 'id'
-          }
+            key: 'id',
+          },
         },
         title: {
-          type: Sequelize.STRING
+          type: Sequelize.STRING,
         },
         completed: {
-          type: Sequelize.BOOLEAN
+          type: Sequelize.BOOLEAN,
         },
         createdAt: {
           allowNull: false,
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
         updatedAt: {
           allowNull: false,
-          type: Sequelize.DATE
-        }
-      })
-    })
+          type: Sequelize.DATE,
+        },
+      });
+    });
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Todos')
-      .then(()=> queryInterface.dropTable('Users'))
-  }
+      .then(() => queryInterface.dropTable('Users'));
+  },
 };

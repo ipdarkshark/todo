@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -15,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     lastname: DataTypes.STRING,
   });
 
-  User.associate = models => {
+  User.associate = (models) => {
     models.User.hasMany(models.Todo);
   };
 

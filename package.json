@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node devServer.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "lint-server": "eslint server"
   },
   "author": "",
   "devDependencies": {

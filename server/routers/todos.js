@@ -15,6 +15,6 @@ router
   .post('/todos', addTodo)
   .delete('/todos/:id', deleteTodo)
   .put('/todos', editTodo)
-  .patch('/todos/:id', toggleTodo)
+  .patch('/todos/:id', toggleTodo);
 
 export default router;
