@@ -13,14 +13,14 @@ const storeData = createStore(
   reducers,
   compose(
     applyMiddleware(sagaMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  ),
 );
 
-// if (localStorage.jwtToken) {
-//   setAuthToken(localStorage.jwtToken);
-//   storeData.dispatch(signInSuccess(decode(localStorage.jwtToken)))
-// }
+if (localStorage.jwtToken) {
+  setAuthToken(localStorage.jwtToken);
+  storeData.dispatch(signInSuccess(decode(localStorage.jwtToken)))
+}
 
 sagaMiddleware.run(rootSaga);
 

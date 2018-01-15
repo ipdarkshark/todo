@@ -24,37 +24,36 @@ const {
 } = types;
 
 export const addTodo = (state = [], action) => {
-  switch(action.type) {
+  switch (action.type) {
+    case TOGGLE_TODO_SUCCESS:
+      return state.map((todo) => {
+        if (todo.id !== action.id) return todo;
+        return Object.assign({}, todo, { completed: !todo.completed });
+      });
 
-    case TOGGLE_TODO_SUCCESS: 
-      return state.map(todo => {
-        if (todo.id !== action.id) return todo;
-        return Object.assign({}, todo, {completed: !todo.completed})
-      })
-      
     case EDIT_TODO_SUCCESS:
-      return state.map(todo => {
+      return state.map((todo) => {
         if (todo.id !== action.id) return todo;
-        return Object.assign({}, todo, {title: action.text})
-      })
+        return Object.assign({}, todo, { title: action.text });
+      });
 
     case GET_TODOS_SUCCESS:
-      return [...state, ...action.todos]
+      return [...state, ...action.todos];
 
     case ADD_TODO_SUCCESS:
-      return [...state, action.text]
+      return [...state, action.text];
 
     case DELETE_TODO_SUCCESS:
-      let index = state.findIndex(todo => todo.id === action.id);
+      const index = state.findIndex(todo => todo.id === action.id);
       return [
         ...state.slice(0, index),
-        ...state.slice(index + 1)
-      ]
-    
+        ...state.slice(index + 1),
+      ];
+
     case DELETE_ALL_TODO:
       return state = [];
-      
-    default: 
+
+    default:
       return state;
   }
-}
+};

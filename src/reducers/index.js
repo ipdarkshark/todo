@@ -11,7 +11,7 @@ const reducers = combineReducers({
   auth,
   visibilityFilter,
   form: formReducer,
-  toastr: toastrReducer
-})
+  toastr: toastrReducer,
+});
 
 export default reducers;

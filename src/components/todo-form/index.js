@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as types from 'actions';
 
@@ -10,18 +10,18 @@ class TodoForm extends Component {
   }
 
   clearInput = () => {
-    this.setState({text: ''});
+    this.setState({ text: '' });
   }
 
-  handleChange = event => {
-    this.setState({text: event.target.value});
+  handleChange = (event) => {
+    this.setState({ text: event.target.value });
   }
 
-  handleKeyUp = event => {
+  handleKeyUp = (event) => {
     if (event.keyCode === 27) this.clearInput();
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const text = this.state.text.trim();
     if (text.length) this.props.addTodo(text);
@@ -31,15 +31,15 @@ class TodoForm extends Component {
   render = () => (
     <form className="todo-form" onSubmit={this.handleSubmit}>
       <input
-        type = "text"
-        autoComplete = "off"
-        placeholder = "What needs to be done?"
-        onChange = {this.handleChange}
-        onKeyUp = {this.handleKeyUp}
-        value = {this.state.text}
+        type="text"
+        autoComplete="off"
+        placeholder="What needs to be done?"
+        onChange={this.handleChange}
+        onKeyUp={this.handleKeyUp}
+        value={this.state.text}
       />
     </form>
   )
 }
- 
-export default connect(null, {...types})(TodoForm);
+
+export default connect(null, { ...types })(TodoForm);

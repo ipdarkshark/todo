@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import TodoItem from 'components/todo-item';
@@ -9,15 +9,15 @@ import './styles.scss';
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'ALL':
-      return todos
+      return todos;
     case 'ACTIVE':
-      return todos.filter(todo => !todo.completed)
+      return todos.filter(todo => !todo.completed);
     case 'COMPLETED':
-      return todos.filter(todo => todo.completed)
+      return todos.filter(todo => todo.completed);
     default:
-      throw new Error('Unknown filter: ' + filter)
+      throw new Error(`Unknown filter: ${filter}`);
   }
-}
+};
 
 class TodoList extends Component {
   componentDidMount() {
@@ -28,16 +28,17 @@ class TodoList extends Component {
   render() {
     const { todoList } = this.props;
 
-    const todos = todoList.map(todo => <TodoItem 
+    const todos = todoList.map(todo => (<TodoItem
       key={todo.id}
-      task={todo}/>
+      task={todo}
+    />),
     );
 
     return (
       <ul className="todo-list">
         {todos}
       </ul>
-    )
+    );
   }
 }
 

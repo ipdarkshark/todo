@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 
 import {
   signUp,
-  signIn
+  signIn,
 } from 'api';
 
 import history from 'utils/history';
@@ -15,7 +15,6 @@ import {
 } from 'const';
 
 import {
-  signUpSuccess,
   signUpFail,
   signInSuccess,
   signInFail,
@@ -23,18 +22,18 @@ import {
   showError,
 } from 'actions';
 
-function* signUpSaga({user}) {
+function* signUpSaga({ user }) {
   try {
-    const {title, content} = yield signUp(user);
+    const { title, content } = yield signUp(user);
     yield history.push('/sign-in');
-    yield showSuccess({ title, content})
-  } catch(err) {
-    yield showError({ content: 'Cannot sign-up' })
-    yield put(signUpFail())
+    yield showSuccess({ title, content });
+  } catch (err) {
+    yield showError({ content: 'Cannot sign-up' });
+    yield put(signUpFail());
   }
 }
 
-function* signInSaga({user}) {
+function* signInSaga({ user }) {
   try {
     const token = yield signIn(user);
     const userInfo = yield decode(token);
@@ -42,15 +41,15 @@ function* signInSaga({user}) {
     yield put(signInSuccess(userInfo));
     yield setAuthToken(token);
     yield history.push('/');
-  } catch(err) {
-    yield showError({ content: 'Wrong password or username' })
-    yield put(signUpFail())
+  } catch (err) {
+    yield showError({ content: 'Wrong password or username' });
+    yield put(signInFail());
   }
 }
 
 export default function* authSaga() {
   yield [
     takeEvery(SIGN_UP_REQUEST, signUpSaga),
-    takeEvery(SIGN_IN_REQUEST, signInSaga)
+    takeEvery(SIGN_IN_REQUEST, signInSaga),
   ];
 }

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ import Button from 'components/button';
 import Panel from 'components/panel';
 import { signInRequest } from 'actions';
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
 
   if (!values.username) errors.username = 'Required';
@@ -17,9 +17,9 @@ const validate = values => {
   else if (values.password.length < 3) errors.password = 'Must be 3 characters or more';
 
   return errors;
-}
+};
 
-const SignIN = props => {
+const SignIN = (props) => {
   const { handleSubmit, reset } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -38,7 +38,7 @@ const SignIN = props => {
         label="Password"
       />
       <Panel className="panel--bottom">
-        <Button className="btn--auth btn--submit" type='submit'>
+        <Button className="btn--auth btn--submit" type="submit">
           Sign in
         </Button>
         <Link to="/">
@@ -48,15 +48,13 @@ const SignIN = props => {
         </Link>
       </Panel>
     </form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'signUP',
   validate,
   onSubmit: (values, dispatch) => {
-    dispatch(signInRequest(values))
-  }
+    dispatch(signInRequest(values));
+  },
 })(SignIN);
-
-// export default connect(null, null)(wrappedSignInForm);

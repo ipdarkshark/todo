@@ -8,7 +8,7 @@ import storeData from './store';
 
 render(
   <Provider store={storeData}>
-    <App/>
+    <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

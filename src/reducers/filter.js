@@ -5,10 +5,10 @@ const {
 } = types;
 
 export const visibilityFilter = (state = 'ALL', action) => {
-  switch(action.type) {
-    case 'SET_VISIBILITY_FILTER': 
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
       return action.filter;
-    default: 
+    default:
       return state;
   }
-}
+};

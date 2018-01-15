@@ -14,26 +14,26 @@ class TodoItem extends Component {
   }
 
   startEdit = () => {
-    this.setState({editing: true});
+    this.setState({ editing: true });
   }
 
   stopEdit = () => {
-    this.setState({editing: false});
+    this.setState({ editing: false });
   }
 
-  saveChanges = event => {
+  saveChanges = (event) => {
     const { task, editTodo } = this.props;
     const text = event.target.value.trim();
     if (text.length && task.title !== text) editTodo(task.id, text);
     this.stopEdit();
   }
 
-  handleKeyUp = event => {
+  handleKeyUp = (event) => {
     if (event.keyCode === 13) this.saveChanges(event);
     if (event.keyCode === 27) this.stopEdit();
   }
 
-  moveCaretAtEnd = event => {
+  moveCaretAtEnd = (event) => {
     const temp_value = event.target.value;
     event.target.value = '';
     event.target.value = temp_value;
@@ -47,13 +47,13 @@ class TodoItem extends Component {
 
   renderEditInput = task => (
     <input
-      type = "text"
-      autoComplete = "off"
+      type="text"
+      autoComplete="off"
       autoFocus
-      className = "todo-item__input"
-      defaultValue = {task.title}
-      onKeyUp = {event => this.handleKeyUp(event)}
-      onFocus= {this.moveCaretAtEnd}
+      className="todo-item__input"
+      defaultValue={task.title}
+      onKeyUp={event => this.handleKeyUp(event)}
+      onFocus={this.moveCaretAtEnd}
     />
   )
 
@@ -62,12 +62,13 @@ class TodoItem extends Component {
     const { editing } = this.state;
 
     return (
-      <li className={classNames("todo-item", {"todo-item--completed": task.completed})}>
+      <li className={classNames('todo-item', { 'todo-item--completed': task.completed })}>
         <div className="todo-item__cell">
-          <Button 
-            className={classNames("btn--icon", "btn--checkbox", {'hide': editing})}
-            onClick={() => toggleTodo(task.id)}>
-            <Icon name={task.completed ? "check_box" : "check_box_outline_blank"} />
+          <Button
+            className={classNames('btn--icon', 'btn--checkbox', { hide: editing })}
+            onClick={() => toggleTodo(task.id)}
+          >
+            <Icon name={task.completed ? 'check_box' : 'check_box_outline_blank'} />
           </Button>
         </div>
 
@@ -76,28 +77,31 @@ class TodoItem extends Component {
         </div>
 
         <div className="todo-item__cell">
-          {editing && <Button 
-            className={classNames("btn--icon")}
-            onClick={this.stopEdit}>
+          {editing && <Button
+            className={classNames('btn--icon')}
+            onClick={this.stopEdit}
+          >
             <Icon name="clear" />
           </Button>}
           {!editing && [
             <Button
               key={'start_edit'}
-              className={classNames("btn--icon")}
-              onClick={this.startEdit}>
+              className={classNames('btn--icon')}
+              onClick={this.startEdit}
+            >
               <Icon name="mode_edit" />
             </Button>,
-            <Button 
+            <Button
               key={'delete_item'}
-              className={classNames("btn--icon")}
-              onClick={() => deleteTodo(task.id)}>
+              className={classNames('btn--icon')}
+              onClick={() => deleteTodo(task.id)}
+            >
               <Icon name="delete" />
-            </Button>
+            </Button>,
           ]}
         </div>
       </li>
-    )
+    );
   }
 }
 

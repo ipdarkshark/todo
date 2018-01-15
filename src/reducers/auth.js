@@ -8,21 +8,21 @@ const {
   SIGN_OUT,
 } = types;
 
-export const auth = (state = {isAuthenticated: false, user: {}}, action) => {
-  switch(action.type) {
-    case SIGN_IN_SUCCESS: 
+export const auth = (state = { isAuthenticated: false, user: {} }, action) => {
+  switch (action.type) {
+    case SIGN_IN_SUCCESS:
       return {
         isAuthenticated: true,
-        user: {...action.user}
-      }
+        user: { ...action.user },
+      };
 
-    case SIGN_OUT: 
+    case SIGN_OUT:
       return {
         isAuthenticated: false,
-        user: {}
-      }
-    
-    default: 
+        user: {},
+      };
+
+    default:
       return state;
   }
-}
+};

@@ -9,14 +9,14 @@ import { headers } from 'api';
 
 import 'styles/styles.scss';
 
-const Todos = ({signOut, deleteAllTodos}) => {
-  const signOutHandler = event => {
+const Todos = ({ signOut, deleteAllTodos }) => {
+  const signOutHandler = (event) => {
     event.preventDefault();
-    headers.delete('Authorization')
+    headers.delete('Authorization');
     localStorage.removeItem('jwtToken');
     signOut();
     deleteAllTodos();
-  }
+  };
 
   return (
     <div className="app">
@@ -27,7 +27,7 @@ const Todos = ({signOut, deleteAllTodos}) => {
       <TodoFilters />
       <TodoList />
     </div>
-  )
-}
+  );
+};
 
 export default connect(null, { signOut, deleteAllTodos })(Todos);

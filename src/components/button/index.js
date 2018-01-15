@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './styles.scss';
 
-const Button = ({ children, type='button', ...props }) => (
+const Button = ({ children, type = 'button', ...props }) => (
   <button {...props} className={classNames('btn', props.className)} type={type}>
     {children}
   </button>

@@ -8,9 +8,9 @@ import NotFound from 'containers/NotFound';
 
 const GuestRouter = () => (
   <Switch>
-    <Route exact path='/' component={StarterPage}/>
-    <Route exact path='/sign-in' component={SignIN}/>
-    <Route exact path='/sign-up' component={SignUP}/>
+    <Route exact path="/" component={StarterPage} />
+    <Route exact path="/sign-in" component={SignIN} />
+    <Route exact path="/sign-up" component={SignUP} />
     <Route component={NotFound} />
   </Switch>
 );

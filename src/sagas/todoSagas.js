@@ -23,48 +23,48 @@ import {
   toggleTodoFail,
 } from 'actions';
 
-function* getAllTodosSaga({payload}) {
+function* getAllTodosSaga() {
   try {
     const todos = yield getAllTodos();
-    yield put(getAllTodosSuccess(todos))
-  } catch(err) {
-    yield put(getAllTodosFail())
+    yield put(getAllTodosSuccess(todos));
+  } catch (err) {
+    yield put(getAllTodosFail());
   }
 }
 
-function* addNewTodoSaga({text}) {
+function* addNewTodoSaga({ text }) {
   try {
     const newTodo = yield addNewTodo(text);
-    yield put(addTodoSuccess(newTodo))
-  } catch(err) {
-    yield put(addTodoFail())
+    yield put(addTodoSuccess(newTodo));
+  } catch (err) {
+    yield put(addTodoFail());
   }
 }
 
-function* deleteTodoSaga({id}) {
+function* deleteTodoSaga({ id }) {
   try {
     const todoID = yield deleteTodo(id);
-    yield put(deleteTodoSuccess(todoID))
-  } catch(err) {
-    yield put(deleteTodoFail())
+    yield put(deleteTodoSuccess(todoID));
+  } catch (err) {
+    yield put(deleteTodoFail());
   }
 }
 
-function* editTodoSaga({id, text}) {
+function* editTodoSaga({ id, text }) {
   try {
     const editedTodo = yield editTodo(id, text);
-    yield put(editTodoSuccess(editedTodo.id, editedTodo.title))
-  } catch(err) {
-    yield put(editTodoFail())
+    yield put(editTodoSuccess(editedTodo.id, editedTodo.title));
+  } catch (err) {
+    yield put(editTodoFail());
   }
 }
 
-function* toggleTodoSaga({id}) {
+function* toggleTodoSaga({ id }) {
   try {
     const todoID = yield toggleTodo(id);
-    yield put(toggleTodoSuccess(todoID))
-  } catch(err) {
-    yield put(toggleTodoFail())
+    yield put(toggleTodoSuccess(todoID));
+  } catch (err) {
+    yield put(toggleTodoFail());
   }
 }
 
@@ -74,7 +74,7 @@ export default function* todosSaga() {
     takeEvery(ADD_TODO, addNewTodoSaga),
     takeEvery(DELETE_TODO, deleteTodoSaga),
     takeEvery(EDIT_TODO, editTodoSaga),
-    takeEvery(TOGGLE_TODO, toggleTodoSaga)
+    takeEvery(TOGGLE_TODO, toggleTodoSaga),
   ];
 }
 

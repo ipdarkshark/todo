@@ -9,31 +9,34 @@ const TodoFilters = ({ setVisibilityFilter, filter }) => {
   const setVisibilityHandler = (event, filter) => {
     event.preventDefault();
     setVisibilityFilter(filter);
-  }
+  };
 
   return (
     <div className="todo-filters">
-      <Button 
-        className={classNames("btn--filter", {"active": filter === 'ALL'})} 
-        onClick={ e => setVisibilityHandler(e, "ALL") }>
+      <Button
+        className={classNames('btn--filter', { active: filter === 'ALL' })}
+        onClick={e => setVisibilityHandler(e, 'ALL')}
+      >
         All
       </Button>
-      <Button 
-        className={classNames("btn--filter", {"active": filter === 'ACTIVE'})}
-        onClick={ e => setVisibilityHandler(e, "ACTIVE") }>
+      <Button
+        className={classNames('btn--filter', { active: filter === 'ACTIVE' })}
+        onClick={e => setVisibilityHandler(e, 'ACTIVE')}
+      >
         Active
       </Button>
-      <Button 
-        className={classNames("btn--filter", {"active": filter === 'COMPLETED'})} 
-        onClick={ e => setVisibilityHandler(e, "COMPLETED") }>
+      <Button
+        className={classNames('btn--filter', { active: filter === 'COMPLETED' })}
+        onClick={e => setVisibilityHandler(e, 'COMPLETED')}
+      >
         Completed
       </Button>
     </div>
   );
-}
+};
 
 const mapStateToProps = state => ({
-  filter: state.visibilityFilter
-})
+  filter: state.visibilityFilter,
+});
 
-export default connect(mapStateToProps, {...types})(TodoFilters);
+export default connect(mapStateToProps, { ...types })(TodoFilters);

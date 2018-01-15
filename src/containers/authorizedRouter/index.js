@@ -6,8 +6,8 @@ import NotFound from 'containers/NotFound';
 
 const AuthorizedRouter = () => (
   <Switch>
-    <Route exact path='/' component={Todos}/>
-    <Redirect to='/' />
+    <Route exact path="/" component={Todos} />
+    <Redirect to="/" />
     {/* <Route component={NotFound} /> */}
   </Switch>
 );

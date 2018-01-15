@@ -3,9 +3,9 @@ import { apiHost } from '../../config.json';
 const call = (path, ...args) => fetch(`${apiHost}${path}`, ...args);
 export const headers = new Headers({ 'Content-Type': 'application/json' });
 
-export const getAllTodos = () => call('/todos', {headers})
+export const getAllTodos = () => call('/todos', { headers })
   .then(res => res.json())
-  .then(data => data)
+  .then(data => data);
 
 
 export const addNewTodo = todo => call('/todos', {
@@ -13,11 +13,11 @@ export const addNewTodo = todo => call('/todos', {
   headers,
   body: JSON.stringify({
     title: todo,
-    completed: false
+    completed: false,
   }),
 })
   .then(res => res.json())
-  .then(data => data)
+  .then(data => data);
 
 
 export const deleteTodo = id => call(`/todos/${id}`, {
@@ -25,19 +25,19 @@ export const deleteTodo = id => call(`/todos/${id}`, {
   headers,
 })
   .then(res => res.text())
-  .then(data => data)
+  .then(data => data);
 
 
-export const editTodo = (id, todo) => call(`/todos/`, {
+export const editTodo = (id, todo) => call('/todos/', {
   method: 'PUT',
   headers,
   body: JSON.stringify({
     id,
-    title: todo
+    title: todo,
   }),
 })
   .then(res => res.json())
-  .then(data => data)
+  .then(data => data);
 
 
 export const toggleTodo = id => call(`/todos/${id}`, {
@@ -45,7 +45,7 @@ export const toggleTodo = id => call(`/todos/${id}`, {
   headers,
 })
   .then(res => res.text())
-  .then(data => data)
+  .then(data => data);
 
 
 export const signUp = user => call('/sign-up', {
@@ -55,11 +55,11 @@ export const signUp = user => call('/sign-up', {
     username: user.username,
     firstname: user.firstname,
     lastname: user.lastname,
-    password: user.password
+    password: user.password,
   }),
 })
   .then(res => res.json())
-  .then(data => data)
+  .then(data => data);
 
 
 export const signIn = user => call('/sign-in', {
@@ -67,8 +67,8 @@ export const signIn = user => call('/sign-in', {
   headers,
   body: JSON.stringify({
     username: user.username,
-    password: user.password
+    password: user.password,
   }),
 })
   .then(res => res.json())
-  .then(data => data.token)
+  .then(data => data.token);
